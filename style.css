@@ -5,7 +5,8 @@ body {
 }
 
 .body-header {
-    background-image: url(Images/alone.jpg);
+    background-image: url('https://ninjasfiles.s3.amazonaws.com/asset_0000000000000020_1549743985_macbook_mouse.jpg');
+    
     height: 66vh;
     background-size: cover;
     background-position: center;
@@ -62,24 +63,25 @@ body {
 }
 
 .nav-menu li a:hover {
-    color: lightgrey;
-    border-bottom: 1px solid black;
+    color: lightgray;
+    border-bottom: 1px solid lightgray;
 }
 
 .no-list-style{
     list-style: none;
 }
 
-.no-list-style li {
-    font-weight: 100;
+.no-list-style li a {
+    font-weight:bolder;
     font-size: 0.9rem;
-}
-
-.no-list-style li a{
     list-style: none;
     color: white;
     text-decoration: none;
 }
+
+/* .no-list-style li a{
+
+} */
 
 .horizontal-list {
     padding-left: 0px;
@@ -91,29 +93,27 @@ body {
     position: relative;
     width: 50%;
     left: 25%;
-    box-shadow: 0px 0px 6px 4px lightblue;
-
-
+    /* box-shadow: 0px 0px 6px 4px lightblue; */
 }
 
 .horizontal-list li {
     display: inline-block;
     font-size: 0.9rem;
     padding: 0px 8px 0px 8px;
-
-
 }
 
 .horizontal-list li a {
     text-decoration: none;
     color: white;
+    transition: color 0.5s, border-bottom 4s;
 
 }
 
 .horizontal-list li a:hover {
-    color: orange;
-    border-bottom: 1px solid orange;
-    transition: color 0.5s, border 0.5s;
+    color: lightgray;
+    border-bottom: 1px solid lightgray;
+    
+    /* transition: color 0.5s, border-bottom 4s; */
     /* border bottom not working*/
 
 
@@ -138,6 +138,7 @@ body {
     color: gold;
 
 
+
 }
 
 
@@ -146,9 +147,6 @@ body {
 .social {
     display: inline-block;
     width: 100%;
-
-
-
 }
 
 .social a {
@@ -156,7 +154,7 @@ body {
 }
 
 .social a img {
-    width: 20px;
+    width: 30px;
     padding: 2px;
     border-radius: 50%;
 }
@@ -186,9 +184,13 @@ section:nth-child(2n+1) {
 
 }
 
-/* section:target {
-    background-color: cyan;
+
+/* Not able to do because of JavaScript applied on sections */
+/* If we remove js then it works */
+/* section:target{
+    background-color: blue;
 } */
+
 
 .section-heading {
     width: auto;
@@ -211,8 +213,7 @@ section:nth-child(2n+1) {
     width: 100%;
     height: auto;
     /* position: relative; */
-
-
+    
 }
 
 #my-image {
@@ -272,16 +273,13 @@ section:nth-child(2n+1) {
 /*common section style*/
 
 
-/*common section heading end*/
+/* common section heading end */
 .skills-container {
     width: 75%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-
-
-
 }
 
 .skill-progress {
