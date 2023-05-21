@@ -175,7 +175,7 @@ function scrollVertically(targetSection) {
 var progressBars = document.querySelectorAll('.skill-progress>div');
 var skillContainer = document.getElementsByClassName('skills-container');
 var animationDone = false;
-document.addEventListener('scroll', checkScroll);
+window.addEventListener('scroll', checkScroll);
 
 // function initializeBars() {
 //     for (let bar of progressBars) {
@@ -228,9 +228,20 @@ function fillBar(bar) {
 
 }
 function checkScroll() {
+
+    let scrollProgress = document.getElementById('progress');
+    let progressValue = document.getElementById('progress-value');
+    let pos = document.documentElement.scrollTop;
+    // console.log(pos);
+    let calcHeight= document.documentElement.
+    scrollHeight - document.documentElement.clientHeight;
+    let scrollValue = Math.round(pos*100/calcHeight);
+    console.log(scrollValue);
+    scrollProgress.style.background = `conic-gradient(#008fff ${scrollValue}%, #c0c0ff ${scrollValue}%)`;
+    progressValue.textContent = `${scrollValue}%`;
     for (let bar of progressBars) {
         var barCoordinates = bar.getBoundingClientRect();
-        console.log(barCoordinates)
+        // console.log(barCoordinates)
         if ((bar.getAttribute("data-visited") == "false") &&
             (barCoordinates.top <= (window.innerHeight - barCoordinates.height))) {
             bar.setAttribute("data-visited", true);
@@ -242,6 +253,8 @@ function checkScroll() {
 
     }
 }
+
+window.onload = checkScroll;
 
 
 
