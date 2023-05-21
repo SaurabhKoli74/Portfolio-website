@@ -149,6 +149,7 @@ for (var i = 0; i < menuAchorTags.length; i++) {
 function scrollVertically(targetSection) {
 
     var targetSectionCoordinates = targetSection.getBoundingClientRect();
+    // console.log(targetSectionCoordinates)
     if (targetSectionCoordinates.top <= 0) {
         clearInterval(interval);
         return;
@@ -229,6 +230,7 @@ function fillBar(bar) {
 function checkScroll() {
     for (let bar of progressBars) {
         var barCoordinates = bar.getBoundingClientRect();
+        console.log(barCoordinates)
         if ((bar.getAttribute("data-visited") == "false") &&
             (barCoordinates.top <= (window.innerHeight - barCoordinates.height))) {
             bar.setAttribute("data-visited", true);
