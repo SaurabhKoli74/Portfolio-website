@@ -1,0 +1,51 @@
+cd
+
+wget https://archive.apache.org/dist/pig/pig-0.16.0/pig-0.16.0.tar.gz
+
+tar -zxvf pig-0.16.0.tar.gz
+
+sudo mv pig-0.16.0 /usr/local/pig
+
+cat>>.bashrc<<EOL
+export PIG_HOME=/usr/local/pig/
+export PATH=$PATH:/usr/local/pig/bin/
+EOL
+
+bash
+
+pig
+quit
+
+
+
+
+
+
+
+
+wget https://query.data.world/s/pchcnrb4i3gduljoclhpxx7hhzawst
+
+mkdir sentiment_analysis
+
+mv pchcnrb4i3gduljoclhpxx7hhzawst sentiment_analysis/raw_data
+
+cd sentiment_analysis
+
+cat>>processing<<EOL
+lines = LOAD '/user/ubuntu/rawdata' AS (line:chararray);
+words = FOREACH lines GENERATE FLATTEN(TOKENIZE(line)) as word;
+grouped = GROUP words BY word;
+result = FOREACH grouped GENERATE group, COUNT(words) as cnt;
+myrank = RANK result BY cnt DESC DENSE;
+top30 = FILTER myrank BY rank_result<=30;
+finalOutput = FOREACH top30 GENERATE group,cnt;
+STORE finalOutput INTO 'distilled' using PigStorage(';');
+EOL
+
+hadoop fs -put raw_data ./rawdata
+
+pig processing
+
+hadoop fs -get /user/ubuntu/distilled/part-m-00000 .
+
+cat part-m-00000 | grep -i 'neutral\|positive\|negative'
